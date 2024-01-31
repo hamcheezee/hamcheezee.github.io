@@ -1308,7 +1308,11 @@ h3 {
 }
 
 @media only screen and (max-width:968px) {
-    .about-content,
+    .about-content {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
     .about-img {
         flex: 0 0 100%;
         max-width: 100%;
@@ -1365,13 +1369,14 @@ h3 {
     .contact-form,
     .education,
     .experience,
+    .about-content,
     .about-content .about-text,
     .about-content .skills {
         flex: 0 0 100%;
         max-width: 100%;
     }
 
-    .portfolio-item {
+    .portfolio-item, .cer-item {
         flex: 0 0 50%;
         max-width: 50%;
     }
@@ -1388,15 +1393,10 @@ h3 {
     .customize-theme .card {
         width: 75vw;
     }
-
-    .grid-view {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    }
 }
 
 @media only screen and (max-width:576px) {
-    .portfolio-item {
+    .portfolio-item, .cer-item {
         flex: 0 0 100%;
         max-width: 100%;
     }
