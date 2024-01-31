@@ -100,10 +100,23 @@ body.hide-scrolling {
     overflow-y: hidden;
 }
 
+.two-sided-layout {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-side {
+    text-align: left;
+    width: 70%; /* Adjust the width as needed */
+}
+
+.right-side {
+    text-align: right;
+    width: 30%; /* Adjust the width as needed */
+}
+
 img {
-    max-width: 100%;
-    height: auto;
-    vertical-align: middle;
+    max-width: 100%; /* Make sure the image doesn't exceed its container */
 }
 
 ul {
@@ -130,6 +143,61 @@ h2 {
 h3 {
     font-size: var(--h3-font-size);
     font-weight: 500;
+}
+
+/* =========================== Animated text =========================== */ 
+.animated-text {
+    font-size: var(--h2-font-size);
+    font-weight: var(--font-semi-bold);
+    min-width: 280px;
+}
+
+.animated-text span {
+    position: relative;
+}
+
+.animated-text span::before {
+    content: "Data Scientist";
+    color: #e18660;
+    animation: words 20s infinite;
+}
+
+.animated-text span::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 120%;
+    background-color: #fcfaf8;
+    border-left: 2px solid #e18660;
+    right: -8px;
+    animation: cursor .8s infinite, typing 20s steps(14) infinite;
+}
+
+@keyframes cursor {
+    to {
+        border-left: 2px solid #e1866000;
+    }
+}
+
+@keyframes words {
+    0%, 33.33% {
+        content: "Data Scientist";
+    }
+    33.34%, 66.66% {
+        content: "Data Engineer";
+    }
+    66.67%, 100% {
+        content: "Data Analyst";
+    }
+}
+
+@keyframes typing {
+    10%, 25%, 40%, 55%, 75%, 90% {
+        width: 0;
+    }
+    5%, 33.33%, 35%, 66.66%, 70%, 100% {
+        width: calc(100% + 8px);
+    }
 }
 
 /* =========================== Layout =========================== */ 
@@ -195,6 +263,26 @@ h3 {
     animation-duration: 0.3s;
     animation-timing-function: linear;
     animation-iteration-count: 1;
+}
+
+.btn-skill {
+    color: black;
+    position: absolute;
+    width: 30%;
+    /* left: 15%; */
+    /* vertical-align: middle;
+    display: inline-block; */
+    /* transform: perspective(1px) translateZ(0); */
+    /* display: flex;
+    flex-direction: column;
+    flex: 0 0 100%;
+    max-width: 100%;
+    color: black;
+    align-items: center;
+    vertical-align: middle;
+    display: inline-block;
+    border: 1.5px solid black;
+    transform: perspective(1px) translateZ(0); */
 }
 
 /* =========================== Header =========================== */ 
@@ -335,6 +423,20 @@ h3 {
     font-size: var(--h2-font-size);
 }
 
+.social-icons {
+    margin-top: var(--m-2-5);
+    list-style: none;
+    display: flex;
+}
+
+.social-icons li {
+    margin-right: 25px;
+}
+
+.social-icons i {
+    font-size: 24px;
+}
+
 .scroll-down {
     position: absolute;
     bottom: var(--m-2-5);
@@ -395,14 +497,14 @@ h3 {
 }
 
 .about-content {
-    flex: 0 0 75%;
-    max-width: 75%;
+    flex: 0 0 50%;
+    max-width: 50%;
 }
 
 .about-content .about-text,
 .about-content .skills {
-    flex: 0 0 50%;
-    max-width: 50%;
+    flex: 0 0 100%;
+    max-width: 100%;
 }
 
 .rounded {
@@ -416,16 +518,40 @@ h3 {
     margin-bottom: var(--m-1);
 }
 
-.about-content .skills .skill-item {
+.about-text h2 {
+    text-align: center;
+    font-size: var(--h2-font-size);
+}
+
+.about-content .skills {
     flex: 0 0 100%;
     max-width: 100%;
 }
 
-/* .about-content .skills .skill-item h4 {
+.about-content .skills .skill-item h4 {
     margin-bottom: var(--m-0-75);
-} */
+}
 
-.about-content .skills .skill-item .progress {
+.skill-item {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    column-gap: 0.5rem;
+    border: 1px solid var(--color-gray);
+    border-radius: 15px;
+    justify-content: center;
+    padding: 8px 15px 8px 15px;
+}
+
+.skill-item img {
+    width: 15%;
+    /* height: auto; */
+    /* border-radius: 50%; */
+    object-fit: cover;
+    object-position: center;
+}
+
+.about-content .skills .progress {
     background-color: var(--color-primary);
     height: 0.45rem;
     border-radius: var(--border-radius);
@@ -433,11 +559,11 @@ h3 {
     position: relative;
 }
 
-.about-content .skills .skill-item:not(:last-child) {
+.about-content .skills {
     margin-bottom: var(--m-1-5);
 }
 
-.about-content .skills .skill-item .progress .progress-in {
+.about-content .skills .progress .progress-in {
     position: absolute;
     left: 0;
     top: 0;
@@ -445,7 +571,7 @@ h3 {
     border-radius: var(--border-radius);
 }
 
-.about-content .skills .skill-item .skill-percent {
+.about-content .skills .skill-percent {
     position: absolute;
     right: 0;
     top: -2.25rem;
@@ -553,6 +679,15 @@ h3 {
     width: 100%;
 }
 
+.grid-view {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+    /* padding: 0 3rem 0 3rem; */
+}
+
 /* .slider::before, .slider::after {
     background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
     content: '';
@@ -561,6 +696,101 @@ h3 {
     width: 15%;
     z-index: 2;
 } */
+
+/* =========================== Certificate =========================== */
+.certificate .container .row .image {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.certificate .container .row .image img {
+    object-fit: cover;
+    transition: .2s linear;
+}
+
+.certificate .container .row .image:hover img {
+    transform: scale(1.1);
+}
+
+.certificate .container .img-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .9);
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    overflow-y: auto;
+    visibility: hidden;
+}
+
+.certificate .container .img-popup.open {
+    visibility: visible;
+    overflow-y: auto;
+}
+
+.certificate .container .img-popup span {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    font-size: 40px;
+    /* font-weight: bolder; */
+    color: var(--color-white);
+    cursor: pointer;
+    z-index: 100;
+}
+
+.certificate .container .img-popup img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    /* width: 1000px; */
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.cer-content {
+    /* margin-top: 1.5rem; */
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: 30px;
+    max-width: 900px;
+    width: 100%;
+    /* border: 1px solid var(--white-alpha-40); */
+    /* backdrop-filter: var(--backdrop-filter-blur); */
+    /* opacity: 0;
+    transform: scale(0.9); */
+}
+
+.cer-header {
+    position: relative;
+}
+
+.cer-thumbnail img {
+    border-radius: 10px;
+}
+
+.cer-item {
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+    margin-bottom: var(--m-1-5);
+}
+
+.cer-date {
+    font-size: var(--small-font-size);
+    color: var(--color-gray);
+}
+
+.cer-date .lni {
+    margin-right: 0.3rem;
+}
+
+.cer-body .description {
+    margin-bottom: 20px;
+    margin: var(--m-0-75) 0;
+}
 
 /* =========================== Portfolio =========================== */
 .portfolio .portfolio-filter {
@@ -709,6 +939,7 @@ h3 {
     visibility: hidden;
     /* opacity: 0.5; */
     overflow-y: auto;
+    /* background: rgba(0, 0, 0, .9); */
 }
 
 .portfolio-popup.open {
@@ -774,19 +1005,43 @@ h3 {
     margin-bottom: 20px;
 }
 
-.pp-body .general-info li {
+.pp-body .description h3 {
+    margin-top: var(--m-1);
+    margin-bottom: var(--m-0-5);
+}
+
+.img-center {
+    text-align: center;
+}
+
+.pp-body .general-info h3 {
     margin-bottom: 10px;
     font-weight: 500;
     /* text-transform: capitalize; */
 }
 
-.pp-body .general-info li span {
+.pp-body .general-info h3 span {
     font-weight: 300;
+    font-size: var(--normal-font-size);
 }
 
-.pp-body .general-info li a {
+.pp-body .general-info h3 span i {
+    margin-right: var(--m-0-5);
+}
+
+.pp-body .general-info h3 a {
     text-transform: lowercase;
     color: var(--color-black);
+}
+
+.info-icon {
+    font-size: 20px;
+    margin-right: var(--m-0-5);
+}
+
+.info-title {
+    margin-top: var(--m-1);
+    margin-bottom: var(--m-0-5);
 }
 
 /* =========================== Contact =========================== */
@@ -1132,6 +1387,11 @@ h3 {
 
     .customize-theme .card {
         width: 75vw;
+    }
+
+    .grid-view {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     }
 }
 

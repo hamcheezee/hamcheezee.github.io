@@ -93,6 +93,32 @@ const filterContainer = document.querySelector(".portfolio-filter-inner"),
         })
       }
 
+/*==================== CERTIFICATE ITEM POPUP ====================*/
+document.querySelectorAll('.cer-thumbnail img').forEach(image => {
+    image.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const popup = document.querySelector('.img-popup');
+        const popupImage = popup.querySelector('img');
+        const originalImageSrc = image.getAttribute('src');
+
+        popupImage.setAttribute('src', originalImageSrc);
+        popup.classList.add("open");
+
+        // Close the popup when clicking on the close button (span)
+        popup.querySelector('span').addEventListener('click', () => {
+            popup.classList.remove("open");
+        });
+
+        // Close the popup when clicking outside the image
+        popup.addEventListener('click', (event) => {
+            if (event.target === popup) {
+                popup.classList.remove("open");
+            }
+        });
+    });
+});
+
 /*==================== PORTFOLIO ITEM DETAILS POPUP ====================*/
 document.addEventListener("click", (e) => {
     if(e.target.classList.contains("more-button")) {
