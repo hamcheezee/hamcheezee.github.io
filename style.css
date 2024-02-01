@@ -1393,12 +1393,27 @@ h3 {
     .customize-theme .card {
         width: 75vw;
     }
+
+    /* .grid-view {
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    } */
 }
 
 @media only screen and (max-width:576px) {
     .portfolio-item, .cer-item {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+
+    /* .cer-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+    } */
+
+    .cer-item .cer-thumbnail,
+    .portfolio-item-inner .portfolio-item-thumbnail {
+        /* width: 100%; */
+        text-align: center;
     }
 
     .portfolio-item-inner {
